@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>vue</title>
+</head>
+
+<body>
+  <!-- 元素容器 -->
+  <div id="app">
+    <!-- ▼▼▼ 事件修饰符 ▼▼▼ -->
+    <section class="lesson-3">
+      <h1>event</h1>
+      <div>
+        <p>
+          <!-- .once 只触发一次事件 -->
+          <button @click.once="subtract(10)">-10</button>
+          <!-- .left 只当点击鼠标左键时触发。 -->
+          <button v-on:click.left="page--">-</button>
+          <input type="text" v-bind:value="page">
+          <!-- .right 只当点击鼠标右键时触发。 -->
+          <button v-on:click.right="page++">+</button>
+          <button @click="add(10)">+10</button>
+        </p>
+      </div>
+      <p>
+        <!-- .prevent 阻止默认事件 -->
+        <a @click.prevent="handleClick" href="https://www.baidu.com/">百度</a>
+      </p>
+    </section>
+    <!-- ▲▲▲ 事件修饰符 ▲▲▲ -->
+    <!-- ▼▼▼ 键盘事件 ▼▼▼ -->
+    <section>
+      <h1>keyboard Event</h1>
+      <label for="">姓名</label>
+      <input type="text" v-on:keyup="logName" v-on:keydown.enter="logNameInfo">
+      <label for="">年龄</label>
+      <input type="text" v-on:keyup="logAge" v-on:keydown.enter="logAgeInfo">
+    </section>
+    <!-- ▲▲▲ 键盘事件 ▲▲▲ -->
+    <!-- ▼▼▼ v-model双向数据绑定 ▼▼▼ -->
+    <section>
+      <h1>双向数据绑定input/select/textarea</h1>
+      <!-- .lazy 懒加载 在 "change" 而不是 "input" 事件中更新 input消失焦点后-->
+      <input type="text" v-model.lazy="name">
+      <p>你的用户名是：{{name}}</p>
+      <select v-model="selected">
+        <option disabled value="" selected>你熟悉的语言是</option>
+        <option>HTML</option>
+        <option>CSS</option>
+        <option>VUE.js</option>
+      </select>
+      <p>你熟悉的语言是: {{ selected }}</p>
+    </section>
+    <!-- ▲▲▲ v-model双向数据绑定 ▲▲▲ -->
+    <!-- ▼▼▼ ref的使用 ▼▼▼ -->
+    <section>
+      <h1>ref的使用</h1>
+      <!-- 主要用途是通过ref获取到对象元素 -->
+      <input type="text" ref="job" @keyup="getJob">
+      <p>{{job}}</p>
+    </section>
+    <!-- ▲▲▲ ref的使用 ▲▲▲ -->
+    <!-- ▼▼▼ watch的使用 ▼▼▼ -->
+    <section>
+      <h1>watch的使用</h1>
+      <!-- 可以对比更新之后的数据和更新之前的原始数据 -->
+      <textarea name="" id="" cols="30" rows="10" v-model.lazy="txtInfo"></textarea>
+      <p>文本正文：{{txtInfo}}</p>
+    </section>
+    <!-- ▲▲▲ watch的使用 ▲▲▲ -->
+    <!-- ▼▼▼ computed计算属性 ▼▼▼ -->
+    <section>
+      <h1>computed计算属性</h1>
+      <button @click="a++">Add to A</button>
+      <button @click="b++">Add to B</button>
+      <p>A = {{a}}</p>
+      <p>B = {{b}}</p>
+      <p>Age + A = {{addToA}}</p>
+      <p>Age + B = {{addToB}}</p>
+    </section>
+    <!-- ▲▲▲ computed计算属性 ▲▲▲ -->
+  </div>
+</body>
+<script src="app.js"></script>
+
+</html>
